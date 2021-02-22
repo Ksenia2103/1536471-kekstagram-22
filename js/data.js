@@ -71,12 +71,13 @@ function getPhoto(index) {
   return photo;
 }
 
-function getPhotosArray(photosCount) {
+const getPhotosDescription = function () {
   let photos = [];
-  for (let i = 1; i <= photosCount; i++) {
+  for (let i = 1; i <= PHOTOS_COUNT; i++) {
     photos.push(getPhoto(i));
   }
   return photos;
 }
 
-getPhotosArray(PHOTOS_COUNT);
+export { getPhotosDescription };
+
