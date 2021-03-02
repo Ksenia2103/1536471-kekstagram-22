@@ -1,4 +1,5 @@
 import {getPhotosDescription} from './data.js';
+import {openModalWindow} from './big-picture.js';
 
 const pictureList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content;
@@ -13,6 +14,12 @@ pictureDescription.forEach((description) => {
   pictureItem.querySelector('.picture__likes').textContent = description.likes;
   pictureItem.querySelector('.picture__comments').textContent = description.comments.length;
   pictureFragment.appendChild(pictureItem);
+
+  pictureItem.addEventListener('click', (evt) => {
+    evt.preventDefault();
+
+    openModalWindow(pictureItem);
+  });
 });
 
 pictureList.appendChild(pictureFragment);
