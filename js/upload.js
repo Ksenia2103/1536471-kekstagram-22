@@ -21,12 +21,14 @@ let currentValue = DEFAULT_SCALE;
 const openForm = () => {
   imageUploadOverlay.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
+
+  resetSlider();
+  changePictureEffect();
+
   document.addEventListener('keydown', onEscKeydown);
   uploadCancel.addEventListener('click', closeForm);
-  resetSlider();
   scaleControlSmaller.addEventListener('click', onScaleControlSmaller);
   scaleControlBigger.addEventListener('click', onScaleControlBigger);
-  changePictureEffect();
 }
 
 const closeForm = () => {
