@@ -17,4 +17,20 @@ const isEscEvent = (evt) => {
   return evt.key === ('Escape' || 'Esc');
 };
 
-export {getRandomNumber, checkStringLength, getRandomArrayElement, isEscEvent};
+const isDuplicate = (hashtags) => {
+  let duplicate = false;
+  for (let i = 0; i < hashtags.length - 1; i++) {
+    if (hashtags.includes(hashtags[i], i + 1)) {
+      duplicate = true;
+      break;
+    }
+  }
+
+  return duplicate;
+}
+
+const isValid = (regex, hashtag) => {
+  return regex.test(hashtag);
+}
+
+export {getRandomNumber, checkStringLength, getRandomArrayElement, isEscEvent, isDuplicate, isValid};
