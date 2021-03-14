@@ -12,16 +12,25 @@ const textDescription = document.querySelector('.text__description');
 textHashtags.addEventListener('input', () => {
   const hashtagsArray = textHashtags.value.toLowerCase().split(' ');
 
+  textHashtags.setCustomValidity('');
+  textHashtags.classList.toggle('text__hashtags--error', false);
+
   if (isDuplicate(hashtagsArray)) {
+    textHashtags.classList.toggle('text__hashtags--error', true);
     textHashtags.setCustomValidity('Нельзя указывать одинаковые хэш-теги');
+    textHashtags.reportValidity();
+    return false;
   }
 
   if (hashtagsArray.length > MAX_HASHTAG_AMOUNT) {
+    textHashtags.classList.toggle('text__hashtags--error', true);
     textHashtags.setCustomValidity('Нельзя указать больше 5 хэш-тегов');
+    textHashtags.reportValidity();
+    return false;
   }
 
   hashtagsArray.forEach((hashtag) => {
-    if (hashtag[0] !== '#') {
+    if (hashtag.charAt(0) !== '#') {
       textHashtags.setCustomValidity('Каждый хэш-тег должен начинаться с символа #');
     } else if (!isValid(RE_HASHTAG, hashtag)) {
       textHashtags.setCustomValidity('Xэш-тег должен состоять только из букв и чисел');
@@ -32,6 +41,8 @@ textHashtags.addEventListener('input', () => {
     } else {
       textHashtags.setCustomValidity('');
     }
+    textHashtags.reportValidity();
+    return false;
   });
 });
 
@@ -39,6 +50,7 @@ textDescription.addEventListener('input', () => {
   if (textDescription.value.length > MAX_COMMENT_LENGTH) {
     textDescription.setCustomValidity('Длина комментария не может составлять больше 140 символов');
   }
+  textDescription.reportValidity();
 });
 
 textHashtags.addEventListener('keydown', (evt) => {

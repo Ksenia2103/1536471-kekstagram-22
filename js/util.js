@@ -18,15 +18,7 @@ const isEscEvent = (evt) => {
 };
 
 const isDuplicate = (hashtags) => {
-  let duplicate = false;
-  for (let i = 0; i < hashtags.length - 1; i++) {
-    if (hashtags.includes(hashtags[i], i + 1)) {
-      duplicate = true;
-      break;
-    }
-  }
-
-  return duplicate;
+  return new Set(hashtags).size !== hashtags.length;
 }
 
 const isValid = (regex, hashtag) => {
