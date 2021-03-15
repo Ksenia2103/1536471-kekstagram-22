@@ -19,14 +19,14 @@ textHashtags.addEventListener('input', () => {
     textHashtags.classList.toggle('text__hashtags--error', true);
     textHashtags.setCustomValidity('Нельзя указывать одинаковые хэш-теги');
     textHashtags.reportValidity();
-    return false;
+    return;
   }
 
   if (hashtagsArray.length > MAX_HASHTAG_AMOUNT) {
     textHashtags.classList.toggle('text__hashtags--error', true);
     textHashtags.setCustomValidity('Нельзя указать больше 5 хэш-тегов');
     textHashtags.reportValidity();
-    return false;
+    return;
   }
 
   hashtagsArray.forEach((hashtag) => {
@@ -42,7 +42,7 @@ textHashtags.addEventListener('input', () => {
       textHashtags.setCustomValidity('');
     }
     textHashtags.reportValidity();
-    return false;
+    return;
   });
 });
 
