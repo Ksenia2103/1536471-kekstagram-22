@@ -1416,3 +1416,8 @@ main {
 .hidden {
   display: none;
 }
+
+.text__hashtags--error {
+  border: 3px solid red;
+  outline-color: red;
+}
