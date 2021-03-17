@@ -1,25 +1,29 @@
-import {getPhotosDescription} from './data.js';
+//import {getPhotosDescription} from './data.js';
 import {openModalWindow} from './big-picture.js';
 
-const pictureList = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content;
-const pictureDescription = getPhotosDescription();
+const renderPictures = (pictures) => {
+  const pictureList = document.querySelector('.pictures');
+  const pictureTemplate = document.querySelector('#picture').content;
+  //const pictureDescription = getPhotosDescription();
 
-const pictureFragment = document.createDocumentFragment();
+  const pictureFragment = document.createDocumentFragment();
 
-pictureDescription.forEach((description) => {
-  const pictureItem = pictureTemplate.cloneNode(true);
+  pictures.forEach((description) => {
+    const pictureItem = pictureTemplate.cloneNode(true);
 
-  pictureItem.querySelector('.picture__img').src = description.url;
-  pictureItem.querySelector('.picture__likes').textContent = description.likes;
-  pictureItem.querySelector('.picture__comments').textContent = description.comments.length;
-  pictureFragment.appendChild(pictureItem);
+    pictureItem.querySelector('.picture__img').src = description.url;
+    pictureItem.querySelector('.picture__likes').textContent = description.likes;
+    pictureItem.querySelector('.picture__comments').textContent = description.comments.length;
+    pictureFragment.appendChild(pictureItem);
 
-  pictureItem.addEventListener('click', (evt) => {
-    evt.preventDefault();
+    pictureItem.addEventListener('click', (evt) => {
+      evt.preventDefault();
 
-    openModalWindow(pictureItem);
+      openModalWindow(pictureItem);
+    });
   });
-});
 
-pictureList.appendChild(pictureFragment);
+  pictureList.appendChild(pictureFragment);
+};
+
+export {renderPictures};
