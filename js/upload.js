@@ -1,5 +1,7 @@
 import {isEscEvent} from './util.js';
-import {resetSlider,changePictureEffect} from './slider.js';
+import {resetSlider, changePictureEffect} from './slider.js';
+import {sendData} from './api.js';
+import {showErrorMessage, showSuccessMessage} from './messages.js';
 
 const SCALE_STEP = 25;
 const MIN_SCALE = 25;
@@ -36,6 +38,7 @@ const closeForm = () => {
   bodyElement.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeydown);
   uploadFile.value = '';
+  imageUploadForm.reset();
 }
 
 const onEscKeydown = (evt) => {
@@ -47,7 +50,7 @@ const onEscKeydown = (evt) => {
 
 const onScaleControlSmaller = () => {
   if (currentValue > MIN_SCALE && currentValue <= MAX_SCALE) {
-    currentValue -=  SCALE_STEP;
+    currentValue -= SCALE_STEP;
     scaleControlValue.value = `${currentValue}%`;
     imageUploadPreview.style.transform = `scale(${currentValue / 100})`;
   }
@@ -61,5 +64,12 @@ const onScaleControlBigger = () => {
   }
 }
 
+const submitHandler = (evt) => {
+  evt.preventDefault();
+  sendData(showSuccessMessage, showErrorMessage, new FormData(evt.target));
+  closeForm();
+};
+
 uploadFile.addEventListener('click', openForm);
 uploadCancel.addEventListener('click', closeForm);
+imageUploadForm.addEventListener('submit', submitHandler);
