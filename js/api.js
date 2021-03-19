@@ -36,5 +36,15 @@ const sendData = (onSuccess, onFail, body) => {
     });
 };
 
-export {getData, sendData};
+let pictures = {};
+
+const getPicturesData = () => {
+  return pictures;
+};
+
+const setPicturesData = (data) => {
+  pictures = data;
+};
+
+export {getData, sendData, getPicturesData, setPicturesData};
 

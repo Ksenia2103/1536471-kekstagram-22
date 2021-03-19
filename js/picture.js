@@ -1,5 +1,13 @@
 import {openModalWindow} from './big-picture.js';
 
+const clearPictures = () => {
+  const pictureList = document.querySelector('.pictures');
+  const pictures = pictureList.querySelectorAll('.picture');
+  pictures.forEach((picture) => {
+    picture.remove();
+  });
+};
+
 const renderPictures = (pictures) => {
   const pictureList = document.querySelector('.pictures');
   const pictureTemplate = document.querySelector('#picture').content;
@@ -21,6 +29,7 @@ const renderPictures = (pictures) => {
     });
   });
 
+  clearPictures();
   pictureList.appendChild(pictureFragment);
 };
 
