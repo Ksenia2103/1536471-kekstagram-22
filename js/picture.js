@@ -1,10 +1,8 @@
-//import {getPhotosDescription} from './data.js';
 import {openModalWindow} from './big-picture.js';
 
 const renderPictures = (pictures) => {
   const pictureList = document.querySelector('.pictures');
   const pictureTemplate = document.querySelector('#picture').content;
-  //const pictureDescription = getPhotosDescription();
 
   const pictureFragment = document.createDocumentFragment();
 
