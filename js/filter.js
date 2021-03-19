@@ -37,7 +37,7 @@ const resetFilter = () => {
   });
 };
 
-const renderPicturesHandler = (pictures, button) => {
+const updatePictures = (pictures, button) => {
   resetFilter();
   button.classList.add('img-filters__button--active');
   renderPictures(pictures);
@@ -45,7 +45,7 @@ const renderPicturesHandler = (pictures, button) => {
 
 const defaultFilterHandler = () => {
   const pictures = getPicturesData();
-  renderPicturesHandler(pictures, defaultFilterButton);
+  updatePictures(pictures, defaultFilterButton);
 };
 
 const randomFilterHandler = () => {
@@ -53,14 +53,14 @@ const randomFilterHandler = () => {
   const randomSortedPictures = sortRandom(pictures);
   const filterPictures = randomSortedPictures.slice(0, RANDOM_PICTURE_COUNT);
 
-  renderPicturesHandler(filterPictures, randomFilterButton);
+  updatePictures(filterPictures, randomFilterButton);
 };
 
 const discussedFilterHandler = () => {
   const pictures = getPicturesData();
   const discussSortedPictures = sortByComments(pictures);
 
-  renderPicturesHandler(discussSortedPictures, discussedFilterButton);
+  updatePictures(discussSortedPictures, discussedFilterButton);
 };
 
 
