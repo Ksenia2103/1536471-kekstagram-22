@@ -6,4 +6,8 @@ import './upload.js';
 import './slider.js';
 import './form-validation.js';
 
-getData((pictures) => {renderPictures(pictures); setPicturesData(pictures); setFilter();}, showAlert);
+getData((pictures) => {
+  renderPictures(pictures);
+  setPicturesData(pictures);
+  setFilter();
+}, showAlert);

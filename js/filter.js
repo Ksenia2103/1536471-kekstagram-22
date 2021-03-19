@@ -13,7 +13,7 @@ const randomFilterButton = imageFiltersForm.querySelector('#filter-random');
 const discussedFilterButton = imageFiltersForm.querySelector('#filter-discussed');
 
 const sortRandom = (array) => {
-  let randomArray = array.slice();
+  const randomArray = array.slice();
   for (let i = randomArray.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     let temp = randomArray[i];
@@ -37,11 +37,15 @@ const resetFilter = () => {
   });
 };
 
+const renderPicturesHandler = (pictures, button) => {
+  resetFilter();
+  button.classList.add('img-filters__button--active');
+  renderPictures(pictures);
+};
+
 const defaultFilterHandler = () => {
   const pictures = getPicturesData();
-  resetFilter();
-  defaultFilterButton.classList.add('img-filters__button--active');
-  renderPictures(pictures);
+  renderPicturesHandler(pictures, defaultFilterButton);
 };
 
 const randomFilterHandler = () => {
@@ -49,18 +53,14 @@ const randomFilterHandler = () => {
   const randomSortedPictures = sortRandom(pictures);
   const filterPictures = randomSortedPictures.slice(0, RANDOM_PICTURE_COUNT);
 
-  resetFilter();
-  randomFilterButton.classList.add('img-filters__button--active');
-  renderPictures(filterPictures);
+  renderPicturesHandler(filterPictures, randomFilterButton);
 };
 
 const discussedFilterHandler = () => {
   const pictures = getPicturesData();
   const discussSortedPictures = sortByComments(pictures);
 
-  resetFilter();
-  discussedFilterButton.classList.add('img-filters__button--active');
-  renderPictures(discussSortedPictures);
+  renderPicturesHandler(discussSortedPictures, discussedFilterButton);
 };
 
 
