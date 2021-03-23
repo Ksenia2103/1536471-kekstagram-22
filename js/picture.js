@@ -10,7 +10,7 @@ const clearPictures = () => {
 
 const renderPictures = (pictures) => {
   const pictureList = document.querySelector('.pictures');
-  const pictureTemplate = document.querySelector('#picture').content;
+  const pictureTemplate = document.querySelector('#picture').content.querySelector('a.picture');
 
   const pictureFragment = document.createDocumentFragment();
 
@@ -25,7 +25,7 @@ const renderPictures = (pictures) => {
     pictureItem.addEventListener('click', (evt) => {
       evt.preventDefault();
 
-      openModalWindow(pictureItem);
+      openModalWindow(description);
     });
   });
 
