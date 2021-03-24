@@ -21,7 +21,6 @@ const commentsLoader = document.querySelector('.comments-loader');
 const body = document.querySelector('body');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 
-
 const onEscKeydown = (evt) => {
   if (isEscEvent(evt)) {
     evt.preventDefault();
@@ -46,12 +45,7 @@ const closeModalWindow = () => {
   document.removeEventListener('keydown', onEscKeydown);
 };
 
-const showBigPicture = (picture) => {
-  bigPictureImg.src = picture.url;
-  bigPictureLikes.textContent = picture.likes;
-  bigPictureDescription.textContent = picture.description;
-  bigPictureComments.textContent = picture.comments.length;
-
+const createCommentsList = (picture) => {
   arrayComments = picture.comments;
   bigPictureCommentList.textContent = '';
   commentStep = 0;
@@ -68,6 +62,15 @@ const showBigPicture = (picture) => {
       commentsLoader.classList.remove('hidden');
     }
   }
+};
+
+const showBigPicture = (picture) => {
+  bigPictureImg.src = picture.url;
+  bigPictureLikes.textContent = picture.likes;
+  bigPictureDescription.textContent = picture.description;
+  bigPictureComments.textContent = picture.comments.length;
+
+  createCommentsList(picture);
 };
 
 const renderComment = (comment) => {
