@@ -78,8 +78,8 @@ const replaceImage = () => {
   let file = uploadFile.files[0];
   const fileName = file.name.toLowerCase();
 
-  const matches = FILE_TYPES.some((it) => {
-    return fileName.endsWith(it);
+  const matches = FILE_TYPES.some((extension) => {
+    return fileName.endsWith(extension);
   });
 
   if (matches) {
