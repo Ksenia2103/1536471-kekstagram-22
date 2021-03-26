@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import {getPicturesData} from './api.js';
 import {renderPictures} from './picture.js';
-
-const RENDER_DELAY = 500;
-const RANDOM_PICTURE_COUNT = 10;
+import {RENDER_DELAY, RANDOM_PICTURE_COUNT} from './constants.js';
 
 const imageFilters = document.querySelector('.img-filters');
 const imageFiltersForm = imageFilters.querySelector('.img-filters__form');
@@ -25,7 +23,7 @@ const sortRandom = (array) => {
 
 const sortByComments = (array) => {
   return array.slice().sort((a, b) => {
-    return b.comments.length - a.comments.length
+    return b.comments.length - a.comments.length;
   });
 };
 

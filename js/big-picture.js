@@ -1,6 +1,6 @@
 import {isEscEvent} from './util.js';
+import {VISIBLE_COMMENTS_COUNT} from './constants.js';
 
-const VISIBLE_COMMENTS_COUNT = 5;
 let arrayComments = {};
 let commentStep;
 

@@ -1,4 +1,4 @@
-const API_URL = 'https://22.javascript.pages.academy/kekstagram';
+import {API_URL} from './constants.js';
 
 const getData = (onSuccess, onFail) => {
   fetch(`${API_URL}/data`, {
@@ -22,7 +22,7 @@ const sendData = (onSuccess, onFail, body) => {
   fetch(API_URL, {
     method: 'POST',
     credentials: 'same-origin',
-    body: body,
+    body,
   })
     .then((response) => {
       if (response.ok) {

@@ -14,7 +14,7 @@ function getRandomArrayElement(array) {
 }
 
 const isEscEvent = (evt) => {
-  return evt.key === ('Escape' || 'Esc');
+  return evt.key === 'Esc' || evt.key === 'Escape';
 };
 
 const isDuplicate = (hashtags) => {

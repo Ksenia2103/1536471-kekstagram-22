@@ -1,18 +1,23 @@
-const GRAYSCALE_MIN = 0;
-const GRAYSCALE_MAX = 1;
-const GRAYSCALE_STEP = 0.1;
-const SEPIA_MIN = 0;
-const SEPIA_MAX = 1;
-const SEPIA_STEP = 0.1;
-const INVERT_MIN = 0;
-const INVERT_MAX = 100;
-const INVERT_STEP = 1;
-const BLUR_MIN = 0;
-const BLUR_MAX = 3;
-const BLUR_STEP = 0.1;
-const BRIGHTNESS_MIN = 1;
-const BRIGHTNESS_MAX = 3;
-const BRIGHTNESS_STEP = 0.1;
+import {
+  GRAYSCALE_MAX,
+  GRAYSCALE_MIN,
+  GRAYSCALE_STEP,
+  SEPIA_MAX,
+  SEPIA_MIN,
+  SEPIA_STEP,
+  DEFAULT__STEP,
+  DEFAULT__MAX,
+  DEFAULT_MIN,
+  BLUR_MAX,
+  BLUR_MIN,
+  BLUR_STEP,
+  BRIGHTNESS_MAX,
+  BRIGHTNESS_MIN,
+  BRIGHTNESS_STEP,
+  INVERT_MAX,
+  INVERT_MIN,
+  INVERT_STEP
+} from './constants.js';
 
 const effectValue = document.querySelector('.effect-level__value');
 const effectList = document.querySelector('.effects__list');
@@ -71,10 +76,10 @@ const applyEffect = (effect) => {
         imageUploadPreview.style.filter = `sepia(${values[handle]})`;
         break;
       case 'marvin':
-        imageUploadPreview.style.filter = `invert(${values[handle]})`;
+        imageUploadPreview.style.filter = `invert(${values[handle]}%)`;
         break;
       case 'phobos':
-        imageUploadPreview.style.filter = `blur(${values[handle]})`;
+        imageUploadPreview.style.filter = `blur(${values[handle]}px)`;
         break;
       case 'heat':
         imageUploadPreview.style.filter = `brightness(${values[handle]})`;
@@ -113,7 +118,7 @@ const changePictureEffect = () => {
           createSlider(BRIGHTNESS_MIN, BRIGHTNESS_MAX, BRIGHTNESS_STEP, effectValue);
           break;
         case 'none':
-          createSlider(0, 1, 1, effectValue);
+          createSlider(DEFAULT_MIN, DEFAULT__MAX, DEFAULT__STEP, effectValue);
           break;
       }
 
@@ -122,4 +127,4 @@ const changePictureEffect = () => {
   });
 };
 
-export {resetSlider,changePictureEffect};
+export {resetSlider, changePictureEffect};

@@ -2,11 +2,14 @@ import {isEscEvent} from './util.js';
 import {resetSlider, changePictureEffect} from './slider.js';
 import {sendData} from './api.js';
 import {showErrorMessage, showSuccessMessage} from './messages.js';
+import {
+  MAX_SCALE,
+  MIN_SCALE,
+  FILE_TYPES,
+  DEFAULT_SCALE,
+  SCALE_STEP
+} from './constants.js';
 
-const SCALE_STEP = 25;
-const MIN_SCALE = 25;
-const MAX_SCALE = 100;
-const DEFAULT_SCALE = 100;
 
 const uploadFile = document.querySelector('#upload-file');
 const imageUploadForm = document.querySelector('.img-upload__form');
@@ -17,6 +20,7 @@ const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlValue = imageUploadForm.querySelector('.scale__control--value');
 const imageUploadPreview = imageUploadForm.querySelector('.img-upload__preview');
 const bodyElement = document.querySelector('body');
+const image = imageUploadPreview.querySelector('.img-upload__preview img');
 
 let currentValue = DEFAULT_SCALE;
 
@@ -69,6 +73,30 @@ const submitHandler = (evt) => {
   sendData(showSuccessMessage, showErrorMessage, new FormData(evt.target));
   closeForm();
 };
+
+const replaceImage = () => {
+  let file = uploadFile.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => {
+    return fileName.endsWith(it);
+  });
+
+  if (matches) {
+    const reader = new FileReader();
+
+    reader.addEventListener('load', function () {
+      image.src = reader.result;
+    });
+    reader.readAsDataURL(file);
+  }
+};
+
+uploadFile.addEventListener('change', (evt) => {
+  evt.preventDefault();
+  openForm();
+  replaceImage();
+});
 
 uploadFile.addEventListener('click', openForm);
 uploadCancel.addEventListener('click', closeForm);

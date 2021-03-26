@@ -1,4 +1,5 @@
 import {isEscEvent} from './util.js';
+import {ALERT_TIMER} from './constants.js';
 
 const main = document.querySelector('main');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
@@ -72,7 +73,7 @@ const showAlert = (message) => {
 
   setTimeout(() => {
     alertElement.remove();
-  }, 3000);
+  }, ALERT_TIMER);
 }
 
 export {showErrorMessage, showSuccessMessage, showAlert};
